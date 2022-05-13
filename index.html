@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./themify-icons/themify-icons.css">
+    <title>Dự báo thời tiết</title>
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <input class="input" placeholder="Nhập khu vực" type="text">
+            <h3 class="location">Hải Phòng</h3>
+            <h4 class="temp">30 °C</h4>
+            <h4 class="status">Trời nắng</h4>
+
+            <span class="view"></span>
+            <span class="speed"></span>
+            <span class="humidity"></span>
+        </div>
+    </div>
+    <script>
+        let locationElement = document.querySelector('.location')
+        let tempElement = document.querySelector('.temp')
+        let statusElement = document.querySelector('.status')
+        let viewElement = document.querySelector('.view')
+        let speedElement = document.querySelector('.speed')
+        let humidityElement = document.querySelector('.humidity')
+        let inputElement = document.querySelector('.input')
+        var key = 'da lat'
+        async function weatherCall(key){
+            document.addEventListener('keydown', function(e){
+                if(e.key === 'Enter'){
+                     key =  inputElement.value.trim()
+                     weatherCall(key)
+                     inputElement.value = null
+                }
+            })
+            var url = `https://api.openweathermap.org/data/2.5/weather?q=${key}&units=metric&appid=d78fd1588e1b7c0c2813576ba183a667`
+            var data = await fetch(url)
+                .then(function(response){
+                    return response.json()
+            })
+            console.log(data)
+            let tempResult = Math.floor(data.main.temp) 
+            locationElement.innerText = data.name
+            tempElement.innerText = `${tempResult} °C`
+            humidityElement.innerText = `Độ ẩm: ${data.main.humidity} %`
+            statusElement.innerText = data.weather[0].main
+            viewElement.innerText = `Tầm nhìn: ${data.visibility} m`
+            speedElement.innerText = `Gió: ${data.wind.speed} km/h`
+        }
+        weatherCall(key)
+    </script>
+</body>
+</html>

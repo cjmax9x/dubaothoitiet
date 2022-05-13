@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.app{
+    width: 400px;
+    margin: 100px auto;
+    text-align: center;
+    border-radius: 4px;
+    padding-bottom: 40px;
+    background-image: url(./3d75f1f7250fe451bd1e.jpg);
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.input{
+    margin: 20px auto;
+    padding: 6px;
+    border-radius: 4px;
+    border: 0px;
+    outline: none;
+    width: 80%;
+}
+.location{
+    font-size: 2.0rem;
+    margin-bottom: 20px;
+    color: blue;
+}
+.temp{
+    color: blue;
+    font-size: 2.0rem;
+    margin-bottom: 20px;
+}
+.status{
+    color: blue;
+
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+}
+
+.view, .speed {
+    
+    margin-right: 20px;
+}
+.view, .speed, .humidity{
+    font-weight: 800 ;
+    color: beige;
+}
